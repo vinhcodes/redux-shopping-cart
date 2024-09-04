@@ -3,36 +3,102 @@
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
+  color:#1a1a1a;
+  background-color: #EAEDED;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+.primary-color {
+  background-color: #ffffff;
+  color:#1a1a1a;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-body {
+html, body {
+  height: 100%;
   margin: 0;
+  padding: 0;
+} 
+
+nav {
+  background-color:#2d2d2d;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+#app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-list {
+ width: 100%;
+ padding: 1rem;
+ height: 70px;
+ margin: 0;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ list-style-type: none;
+}
+.nav-list div {
+  display: flex;
+  gap: 1rem
+}
+
+.nav-item {
+  text-decoration: none;
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  padding: 2px 10px 2px 10px;
+  border-radius: 8px;
+}
+.nav-item:hover {
+  background-color: #242424;
+}
+#cart-btn,#product-btn {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.status-page {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+.dropdown {
+  background-color: rgb(234, 234, 234);
+  border: 1px solid rgb(216, 216, 216);
+  border-radius: 8px;
+  color: #242424;
+}
+.dropdown-option {
+  text-align: center;
 }
 
 button {
@@ -43,15 +109,135 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: #1a1a1a;
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #1a1a1a;
+  color: #1a1a1a;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-outline:hover {
+  background-color: rgb(239 68 68);
+  color: white;
+  border-color: rgb(239 68 68);
+}
+
+button:hover {
+  
+  background-color: rgb(22 163 74);
+}
+
+.products-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.products-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+
+.product-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.product-card img {
+  border-radius: 1rem;
+}
+
+.products-list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-content {
+  max-width: 50%;
+  text-align: left;
+}
+
+.product-description {
+
+}
+
+.product-price {
+
+}
+
+#cart {
+  
+  margin: 0;
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.cart-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cart-total {
+  position: sticky;
+  top: 1rem;
+  width: 20%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+#item-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+.cart-item {
+  display: flex;
+  gap: 1.2rem;
+}
+.cart-item, .cart-total {
+  
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+
+.item-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-image img {
+  border-radius: 4px;
+}
+
+.item-details {
+  width: 100%;
+}
+.item-options {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (prefers-color-scheme: light) {
