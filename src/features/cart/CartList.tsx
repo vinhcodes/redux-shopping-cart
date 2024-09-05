@@ -43,12 +43,11 @@ const CartItem: React.FC<{ item: CartItemType }> = ({ item }) => {
   };
 
   const handleQuantityChange = (newQuantity: number) => {
-    console.log(`this is new quanity ${newQuantity} of ${name}`);
     const quantity = newQuantity;
     dispatch(updateQuantity({ name, quantity, price }));
   };
   return (
-    <li className="cart-item primary-color">
+    <li className="cart-item card">
       <div className="item-image">
         <img src={image} height={120} width={100}/>
       </div>

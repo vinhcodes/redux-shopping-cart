@@ -79,7 +79,7 @@ const cartSlice = createSlice({
         );
 
         // Updating the total quantity of the cart after deleting an item
-        state.totalQuantity--;
+        state.totalQuantity -= existingItem.quantity;
 
         // Adjusting the total price based on the deleted item quantity and item price per unit
         state.totalPrice -= existingItem.price * existingItem.quantity;

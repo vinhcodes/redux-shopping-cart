@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../../app/store"; // Adjust the path to your store file
 import { fetchProduct } from "./ProductSlice"; // Adjust the path to your slice file
 import { addItem } from "../cart/CartSlice";
+import { useToast } from "../../provider/ToastProvider";
 
 const ProductList: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -11,6 +12,9 @@ const ProductList: React.FC = () => {
   const products = useSelector((state: RootState) => state.product.items);
   const status = useSelector((state: RootState) => state.product.status);
   const error = useSelector((state: RootState) => state.product.error);
+
+  // Initialize a toast hook
+  const { addToast } = useToast();
 
   // Optional: Trigger fetching products on component mount
   useEffect(() => {
@@ -28,7 +32,7 @@ const ProductList: React.FC = () => {
   if (status === "loading")
     return (
       <div className="status-page">
-        <p>Loading...</p>
+        <div className="loader"></div>
       </div>
     );
   if (status === "failed")
@@ -43,19 +47,20 @@ const ProductList: React.FC = () => {
     if (cartItem) {
       dispatch(addItem(cartItem));
     }
+    addToast(`${cartItem?.title} added to your cart!`, "success")
   };
 
   return (
     <section className="products-container">
-      <div className="products-header primary-color">
+      <div className="products-header card">
         <h2 >Product List</h2>
-        <button onClick={handleFetchProducts}>Fetch Products</button>
+        <button className="btn-primary" onClick={handleFetchProducts}>Fetch Products</button>
       </div>
 
       {products.length > 0 ? (
         <ul className="products-list">
           {products.map((product) => (
-            <li className="product-card primary-color" key={product.id}>
+            <li className="product-card card" key={product.id}>
               <img
                 src={product.image}
                 alt={product.title}
@@ -64,7 +69,7 @@ const ProductList: React.FC = () => {
               <div className="product-content">
                 <h3 className="product-title">{product.title}</h3>
                 <p className="product-description">{product.description}</p>
-                <button onClick={() => handleClick(product.id)}>
+                <button className="btn-primary" onClick={() => handleClick(product.id)}>
                   Add to cart
                 </button>
               </div>
