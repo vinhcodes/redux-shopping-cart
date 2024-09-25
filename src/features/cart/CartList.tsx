@@ -23,12 +23,12 @@ const CartList: React.FC = () => {
     <section id="cart">
       <ul className="cart-list">
         {cartItems.map((item) => (
-          <CartItem key={item.item_id} item={item} />
+          <CartItem key={item.id} item={item} />
         ))}
       </ul>
-      <div className="cart-total primary-color">
+      <div className="cart-total card">
       <p>Subtotal ({totalQuantity}) items: </p>
-      <p id="item-price">{parseFloat(`${totalPrice}`).toFixed(2)}</p>
+      <p id="item-price">$ {parseFloat(`${totalPrice}`).toFixed(2)}</p>
       </div>
     </section>
   );
@@ -36,10 +36,14 @@ const CartList: React.FC = () => {
 
 const CartItem: React.FC<{ item: CartItemType }> = ({ item }) => {
   const dispatch: AppDispatch = useDispatch();
-  const { name, price, quantity, image, item_id } = item;
+  const { name, price, quantity, image, id } = item;
+  const [isFading, setIsFading] = React.useState(false);
 
-  const handleDelete = (item_id: string) => {
-    dispatch(deleteItem({ item_id }));
+  const handleDelete = (id: string) => {
+    setIsFading(true); // Trigger fade-out
+    setTimeout(() => {
+      dispatch(deleteItem({ id })); // Delete item after animation
+    }, 500); // Matches the duration of the fade-out animation
   };
 
   const handleQuantityChange = (newQuantity: number) => {
@@ -47,9 +51,9 @@ const CartItem: React.FC<{ item: CartItemType }> = ({ item }) => {
     dispatch(updateQuantity({ name, quantity, price }));
   };
   return (
-    <li className="cart-item card">
+    <li className={`cart-item card ${isFading ? 'fade-out' : ''}`}> 
       <div className="item-image">
-        <img src={image} height={120} width={100}/>
+        <img src={image[0]} height={120} width={100}/>
       </div>
       <div className="item-details">
       <div className="item-header">
@@ -57,7 +61,7 @@ const CartItem: React.FC<{ item: CartItemType }> = ({ item }) => {
       </div>
       <div className="item-content">
         <div className="item-price">
-          <p>{price}</p>
+          <p>$ {price}</p>
         </div>
         <div className="item-options">
           <QuantityDropdown
@@ -65,7 +69,9 @@ const CartItem: React.FC<{ item: CartItemType }> = ({ item }) => {
             maxQuantity={100}
             onQuantityChange={handleQuantityChange}
           />
-          <button className="btn-outline" onClick={() => handleDelete(item_id)}>Remove item</button>
+          <div className="btn-container">
+          <button className="btn-outline" onClick={() => handleDelete(id)}>Remove item</button>
+          </div>
         </div>
         </div>
       </div>

@@ -9,13 +9,16 @@ declare var global: any;
 
 const mockProducts: Product[] = [
   {
-    id: 1,
-    title: "Test Product 1",
+    id: "1",
+    name: "Test Product 1",
     price: 100,
     description: "Testing new product",
-    category: "test",
-    image: "test.com/etsdwo21sas",
+    CategoryId: "test",
+    status: "available",
+    imageUrl: "test.com/etsdwo21sas",
     rating: { rate: 3.9, count: 120 },
+    quantity: 120,
+    options: [{id: 1, option:"xs", stock: 120}],
   },
 ];
 

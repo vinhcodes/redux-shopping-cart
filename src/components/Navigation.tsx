@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState, AppDispatch } from "../app/store";
 import { Link } from "react-router-dom";
-
+import FilterBySearchTerm from "../features/filter/FilterBySearchTerm"
 export default function Navigation() {
   const cartCount = useSelector((state: RootState) => state.cart.totalQuantity);
   const cartItems = useSelector((state: RootState) => state.cart);
@@ -11,6 +11,7 @@ export default function Navigation() {
     <nav>
       <ul className="nav-list">
         <li className="">Shopping-Cart</li>
+        <FilterBySearchTerm />
         <div>
           <li className="nav-item">
             <Link to={"/"}>

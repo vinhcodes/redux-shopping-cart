@@ -1,0 +1,78 @@
+.price-range-slider {
+  width: 100%;
+  position: relative;
+  padding: 20px 0;
+}
+
+.slider-track {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background-color: #ddd; /* Background of full range */
+  border-radius: 5px;
+}
+
+.slider-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background-color: #ddd; /* Full range background */
+  border-radius: 5px;
+  z-index: 0;
+}
+
+.slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 0;
+  background: none;
+  position: absolute;
+  pointer-events: none;
+}
+
+.slider-thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.slider-thumb::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.min-thumb {
+  z-index: 3; /* Ensures the min thumb is always on top of the max thumb */
+}
+
+.max-thumb {
+  z-index: 2; /* Ensure the max thumb is behind the min thumb */
+}
+
+.slider-range {
+  position: absolute;
+  height: 8px;
+  background-color: #007bff; /* Highlighted range */
+  border-radius: 5px;
+  z-index: 1;
+  top: 0;
+}
+
+.slider-values {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  padding: 0.5rem 0;
+}

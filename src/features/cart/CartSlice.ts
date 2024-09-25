@@ -8,7 +8,7 @@ export interface CartState {
   totalPrice: number;
 }
 
-const initialState: CartState = {
+export const initialState: CartState = {
   items: [],
   totalQuantity: 0,
   totalPrice: 0,
@@ -21,7 +21,7 @@ const cartSlice = createSlice({
     addItem: {
       reducer: (state, action: PayloadAction<CartItem>) => {
         const existingItem = state.items.find(
-          (item) => item.name === action.payload.name
+          (item) => item.id === action.payload.id
         );
         if (existingItem) {
           existingItem.quantity += action.payload.quantity;
@@ -36,11 +36,11 @@ const cartSlice = createSlice({
       prepare: (item: Product) => {
         const id = nanoid();
         const newCartItem: CartItem = {
-          item_id: id,
-          name: item.title,
+          id: id,
+          name: item.name,
           price: item.price,
           quantity: 1,
-          image: item.image,
+          image: item.imageUrl,
         };
         return { payload: newCartItem };
       },
@@ -69,13 +69,13 @@ const cartSlice = createSlice({
         
       }
     },
-    deleteItem: (state, action: PayloadAction<{ item_id: string }>) => {
+    deleteItem: (state, action: PayloadAction<{ id: string }>) => {
       const existingItem = state.items.find(
-        (item) => item.item_id === action.payload.item_id
+        (item) => item.id === action.payload.id
       );
       if (existingItem) {
         state.items = state.items.filter(
-          (item) => item.item_id !== existingItem.item_id
+          (item) => item.id !== existingItem.id
         );
 
         // Updating the total quantity of the cart after deleting an item

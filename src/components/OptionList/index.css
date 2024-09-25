@@ -1,0 +1,31 @@
+.option-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 0.5rem;
+  padding: 10px;
+  margin: 0;
+}
+
+.option-item {
+  color: var(--color-dark);
+  display: inline-flex;
+  border-radius: 10px;
+}
+.option-btn {
+  width: 100%;
+  background-color: var(--color-light);
+  text-align: left;
+  justify-content: left;
+  text-transform: none;
+  font-weight: 300;
+}
+.option-btn:hover {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.selected {
+  background-color: var(--color-accent-blue);
+  color: white;
+  font-weight: 600;
+}
